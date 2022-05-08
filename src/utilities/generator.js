@@ -5,7 +5,7 @@ export const uppercase = letters.toUpperCase().split('');
 export const numbers = '0123456789'.split('');
 export const symbols = '!@#$%^&*()_-+=[]|{}?,.'.split('');
 
-export const obj = {
+export const charObj = {
     lowercase,
     uppercase,
     numbers,

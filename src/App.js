@@ -1,11 +1,9 @@
 import './App.css';
-import { obj, generate } from './utilities/generator';
+import { generate } from './utilities/generator';
 
 export default function App() {
-  const pa = generate(obj, 10)
-  console.log(pa)
   return (
-    <div className="App">
+    <div className="App flex col">
     </div>
   );
 }
