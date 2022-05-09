@@ -1,7 +1,7 @@
 .container-check {
     width: 100%;
     border-radius: 1em;
-    background-color: #ff7700;
+    background-color: #970000;
 }
 
 .Checkbox {
@@ -14,11 +14,12 @@
 
 .Checkbox h2 {
     width: 80%;
+    color: #d3d3d3;
     /* border: 1px solid; */
 }
 
 .Checkbox span {
     /* border: 1px solid; */
-    width: 10%;
+    width: 20%;
     cursor: pointer;
 }

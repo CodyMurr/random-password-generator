@@ -23,16 +23,27 @@ export default function PasswordForm() {
             setPassParams([
                 ...passParams.filter(p => p !== param)
             ]);
-
         }
-
     } 
-    console.log(passParams)
+
+    function handleChange(e) {
+        e.preventDefault();
+        setLength({
+            ...length,
+            value: e.target.value
+        });
+    }
     const opts = chars.map((c) => <Checkbox name={c} value={charObj[c]} key={c} editParameters={editParameters} />)
 return (
     <form className="PasswordForm flex col">
-        <Slider />
+        <h2>Length: {length.value}</h2>
+        <span className="flex minMax">
+            {length.min} 
+            <Slider length={length} handleChange={handleChange} />
+            {length.max} 
+        </span>
         {opts}
+        <button type="submit">Generate</button>
     </form>
     );
 }

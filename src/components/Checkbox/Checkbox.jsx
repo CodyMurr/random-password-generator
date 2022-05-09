@@ -16,7 +16,7 @@ export default function Checkbox({ name, value, editParameters}) {
             <h2>Include {capitalize(name)}</h2>
             <span>
 
-            {isChecked ? <FaToggleOn size={40} /> : <FaToggleOff size={40} /> }
+            {isChecked ? <FaToggleOn size={60} style={{color: '#34E5FF'}} /> : <FaToggleOff size={60} style={{color: '#34E5FF'}} /> }
             </span>
         </section>
     </div>
