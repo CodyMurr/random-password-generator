@@ -18,7 +18,7 @@ export default function App() {
             {result ? result : 'Click Generate to See Output'}
           </h1>
           <section className='flex icons'>
-
+          {/* implement clipboard functionality */}
           <FaCopy size={50} color='#C33C54' />&nbsp;
           <FaUndo size={50} color='#C33C54' />&nbsp;
           </section>
