@@ -13,7 +13,7 @@ export default function PasswordForm({getPassword}) {
     });
     const [charCt, setCharCt] = useState(5);
     const [passParams, setPassParams] = useState([]);
-
+    const [powered, setPowered] = useState(false)
     
     function handleAddParam(param) {
         setPassParams([...passParams, param])
@@ -33,7 +33,12 @@ export default function PasswordForm({getPassword}) {
         e.preventDefault();
         setCharCt(e.target.value);
     }
-    const opts = chars.map((c) => <Checkbox name={c} value={charObj[c]} key={c} handleAddParam={handleAddParam} handleDeleteParam={handleDeleteParam} />)
+
+    function clearForm(cb) {
+        setCharCt(length.min);
+        setPassParams([]);
+    }
+    const opts = chars.map((c) => <Checkbox name={c} value={charObj[c]} key={c} handleAddParam={handleAddParam} handleDeleteParam={handleDeleteParam} clearForm={clearForm} powered={powered} setPowered={setPowered} />)
 return (
     <form className="PasswordForm flex col" onSubmit={handleSubmit}>
         <FaCog className="abso" size={30} color='#889696' />
@@ -43,7 +48,7 @@ return (
             <Slider length={length} charCt={charCt} handleChange={handleChange} />
             <h3 className="max">{length.max}</h3>
         </span>
-        <p className="flex reset">RESET</p>
+        <p className="flex reset" onClick={() => clearForm()}>RESET</p>
         {opts}
         <button type="submit" disabled={passParams.length ? false : true}>Generate</button>
     </form>
