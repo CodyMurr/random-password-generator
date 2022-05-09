@@ -4,13 +4,13 @@ import './PasswordForm.css'
 import Slider from "../Slider/Slider";
 import Checkbox from "../Checkbox/Checkbox";
 
-export default function PasswordForm() {
+export default function PasswordForm({getPassword}) {
     const chars = Object.keys(charObj);
     const [length, setLength] = useState({
         min: 5,
         max: 30,
-        value: 5
     });
+    const [charCt, setCharCt] = useState(5);
     const [passParams, setPassParams] = useState([]);
     
     function editParameters(param) {
@@ -26,21 +26,23 @@ export default function PasswordForm() {
         }
     } 
 
+    function handleSubmit(e) {
+        e.preventDefault();
+        getPassword(passParams, charCt);
+    }
+
     function handleChange(e) {
         e.preventDefault();
-        setLength({
-            ...length,
-            value: e.target.value
-        });
+        setCharCt(e.target.value);
     }
     const opts = chars.map((c) => <Checkbox name={c} value={charObj[c]} key={c} editParameters={editParameters} />)
 return (
-    <form className="PasswordForm flex col">
-        <h2>Length: {length.value}</h2>
+    <form className="PasswordForm flex col" onSubmit={handleSubmit}>
+        <h1>Length: {charCt}</h1>
         <span className="flex minMax">
-            {length.min} 
-            <Slider length={length} handleChange={handleChange} />
-            {length.max} 
+            <h3 className="min">{length.min}</h3>
+            <Slider length={length} charCt={charCt} handleChange={handleChange} />
+            <h3 className="max">{length.max}</h3>
         </span>
         {opts}
         <button type="submit">Generate</button>

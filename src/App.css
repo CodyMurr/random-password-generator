@@ -1,6 +1,6 @@
 .App {
   align-items: center;
-  background-color: #3185FC;
+  background-color: #122a3e;
   width: 100vw;
   height: 100vh;
 }
@@ -14,7 +14,7 @@
 }
 
 .form-container {
-  background-color: #34E5FF;
+  background-color: #454860;
   border-radius: 1em;
   margin-top: 3%;
   width: 45%;
@@ -23,6 +23,23 @@
   padding: 2%;
 }
 
+.App .output {
+  background-color: #777DA7;
+  width: 50%;
+  padding: 3%;
+  border: 9px solid #777DA7;
+  border-radius: 1em;
+  margin-top: 3%;
+  align-items: center;
+}
+
 .App .output h1 {
-  color: #0A2463;
+  color: #3A3335;
+  letter-spacing: 2px;
+  font-size: 2em;
+  font-weight: 800;
+  padding: 1%;
+  border-bottom: 3px solid #3A3335;
+  width: 80%;
+  text-align: center;
 }

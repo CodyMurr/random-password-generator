@@ -9,14 +9,14 @@ export default function Checkbox({ name, value, editParameters}) {
 
     function handleClick(e) {
         setIsChecked(!isChecked);
-        if (isChecked) editParameters(value);
+        if (!isChecked) editParameters(value);
     }
     return <div className="container-check flex">
         <section className=" flex Checkbox" onClick={handleClick}>
             <h2>Include {capitalize(name)}</h2>
             <span>
 
-            {isChecked ? <FaToggleOn size={60} style={{color: '#34E5FF'}} /> : <FaToggleOff size={60} style={{color: '#34E5FF'}} /> }
+            {!isChecked ? <FaToggleOff size={70} style={{color: '#7D2636'}} /> : <FaToggleOn size={70} style={{color: '#7D2636'}} /> }
             </span>
         </section>
     </div>

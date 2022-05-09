@@ -12,13 +12,14 @@ export const charObj = {
     symbols
 }
 
-export function generate(obj, len) {
+export function generate(arr, len) {
     const passArr = [];
-    const keys = Object.keys(obj);
     while(passArr.length <= len) {
-        let randomArr = Math.floor(Math.random() * keys.length);
-        let randomChar = Math.floor(Math.random() * obj[keys[randomArr]].length);
-        passArr.push(obj[keys[randomArr]][randomChar]);
+        let randomArr = Math.floor(Math.random() * arr.length);
+        let randomChar = Math.floor(Math.random() * arr[randomArr].length);
+        passArr.push(arr[randomArr][randomChar]);
+
+        console.log(randomArr)
     }
     return passArr.join('');
 }
