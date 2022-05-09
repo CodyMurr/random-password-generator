@@ -1,6 +1,8 @@
 .App {
   align-items: center;
-  background-color: rgb(255, 170, 0);
+  /* background-color: rgb(255, 170, 0); */
+  width: 100vw;
+  height: 100vh;
 }
 
 .flex {
@@ -9,4 +11,15 @@
 
 .col {
   flex-direction: column;
+}
+
+.form-container {
+  background-color: #00a183;
+  border-radius: 1em;
+  margin-top: 3%;
+  width: 30%;
+  height: 40vh;
+  justify-content: center;
+  border: 3px solid #00a183;
+  padding: 2%;
 }

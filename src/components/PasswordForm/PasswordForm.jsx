@@ -1,6 +1,6 @@
 import { charObj } from "../../utilities/generator";
 import { useState } from "react";
-
+import './PasswordForm.css'
 import Slider from "../Slider/Slider";
 import Checkbox from "../Checkbox/Checkbox";
 
@@ -23,9 +23,12 @@ export default function PasswordForm() {
             setPassParams([
                 ...passParams.filter(p => p !== param)
             ]);
+
         }
+
     } 
-    const opts = chars.map((c) => <Checkbox name={c} value={charObj[c]} key={c} passParams={passParams} />)
+    console.log(passParams)
+    const opts = chars.map((c) => <Checkbox name={c} value={charObj[c]} key={c} editParameters={editParameters} />)
 return (
     <form className="PasswordForm flex col">
         <Slider />

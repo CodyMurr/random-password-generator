@@ -7,8 +7,10 @@ export default function App() {
 
   return (
       <div className="App flex col">
+        <section className='form-container flex'>
+
           <PasswordForm />
-        
+        </section>
       </div>
   );
 }
