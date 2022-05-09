@@ -35,8 +35,8 @@
 
 .App .output h1 {
   color: #3A3335;
-  letter-spacing: 2px;
-  font-size: 2em;
+  /* letter-spacing: 2px; */
+  font-size: 1.75em;
   font-weight: 800;
   padding: 1%;
   border-bottom: 3px solid #3A3335;

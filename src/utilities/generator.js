@@ -18,8 +18,6 @@ export function generate(arr, len) {
         let randomArr = Math.floor(Math.random() * arr.length);
         let randomChar = Math.floor(Math.random() * arr[randomArr].length);
         passArr.push(arr[randomArr][randomChar]);
-
-        console.log(randomArr)
     }
     return passArr.join('');
 }
