@@ -2,7 +2,7 @@
   align-items: center;
   background-color: #122a3e;
   width: 100vw;
-  height: 100vh;
+  height: 100vmin;
 }
 
 .flex {
