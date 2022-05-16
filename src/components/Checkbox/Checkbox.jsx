@@ -6,30 +6,44 @@ import './Checkbox.css';
 export default function Checkbox({
 	name,
 	value,
-	paramObj,
-	handleAddParam,
-	handleDeleteParam,
+	passParams,
+	setPassParams,
 }) {
-	function handleClick(e) {
-		handleAddParam(name);
+	const [isChecked, setIsChecked] = useState(false);
+
+	function toggle() {
+		setIsChecked(!isChecked);
+	}
+
+	function handleAddParam(e) {
+		e.preventDefault();
+		toggle();
+		setPassParams([...passParams, value]);
+		console.log(passParams);
+	}
+
+	function handleDeleteParam(e) {
+		e.preventDefault();
+		toggle();
+		setPassParams(passParams.filter((el) => el !== value));
 	}
 
 	return (
 		<div className='container-check flex'>
-			<section className=' flex Checkbox' onClick={handleClick}>
+			<section className=' flex Checkbox'>
 				<h2>Include {capitalize(name)}</h2>
 				<span>
-					{!paramObj[name].isChecked ? (
+					{!isChecked ? (
 						<FaToggleOff
 							size={70}
 							style={{ color: '#7D2636' }}
-							onClick={() => handleAddParam(name)}
+							onClick={handleAddParam}
 						/>
 					) : (
 						<FaToggleOn
 							size={70}
 							style={{ color: '#7D2636' }}
-							onClick={() => handleDeleteParam(name)}
+							onClick={handleDeleteParam}
 						/>
 					)}
 				</span>

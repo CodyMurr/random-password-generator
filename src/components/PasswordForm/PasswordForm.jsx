@@ -21,14 +21,6 @@ export default function PasswordForm({ getPassword }) {
 		symbols: false,
 	});
 
-	function handleAddParam(param) {
-		setParamObj({
-			...paramObj,
-			param: true,
-		});
-		setPassParams([...passParams, param]);
-	}
-
 	function handleDeleteParam(param) {
 		setParamObj({
 			...paramObj,
@@ -49,18 +41,10 @@ export default function PasswordForm({ getPassword }) {
 
 	function clearForm() {
 		setParamObj({
-			lowercase: {
-				isChecked: false,
-			},
-			uppercase: {
-				isChecked: false,
-			},
-			numbers: {
-				isChecked: false,
-			},
-			symbols: {
-				isChecked: false,
-			},
+			lowercase: false,
+			uppercase: false,
+			numbers: false,
+			symbols: false,
 		});
 		setCharCt(length.min);
 		setPassParams([]);
@@ -71,11 +55,12 @@ export default function PasswordForm({ getPassword }) {
 			value={charObj[c]}
 			key={c}
 			paramObj={paramObj}
-			handleAddParam={handleAddParam}
 			handleDeleteParam={handleDeleteParam}
 			clearForm={clearForm}
 			powered={powered}
 			setPowered={setPowered}
+			passParams={passParams}
+			setPassParams={setPassParams}
 		/>
 	));
 	return (
