@@ -8,6 +8,7 @@ export default function Checkbox({
 	value,
 	passParams,
 	setPassParams,
+	clearForm,
 }) {
 	const [isChecked, setIsChecked] = useState(false);
 

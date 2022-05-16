@@ -1,0 +1,55 @@
+.Settings {
+    width: 50%;
+    height: 50%;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #889696;
+    /* background-color: #454860; */
+    color: #454860;
+    border-radius: 2vmin;
+}
+
+.Settings label {
+    width: 30%;
+    transform: scale(1.5);
+    font-weight: 600;
+}
+
+.Settings label input {
+    border-radius: 3px;
+}
+
+.Settings .btns {
+    width: 100%;
+    height: 20%;
+    justify-content: center;
+    align-items: center;
+}
+
+.Settings .btns button {
+    width: 25%;
+    height: 50%;
+    border-radius: 1vmin;
+    font-size: 1.55em;
+    font-weight: 600;
+    background-color: #C33C54;
+    color: #454860;
+    cursor: pointer;
+}
+
+.Settings .btns button:hover {
+    background-color: #454860;
+    color: #C33C54;
+    transform: scale(1.2);
+    transition: all .4s;
+}
+
+.Settings .btns .cancel {
+    font-weight: 700;
+    font-size: 1.25em;
+    cursor: pointer;
+}
+.Settings .btns .cancel:hover {
+    text-decoration: underline;
+    color: #C33C54;
+}

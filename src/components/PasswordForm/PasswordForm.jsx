@@ -1,9 +1,13 @@
 import { charObj } from '../../utilities/generator';
 import { useState } from 'react';
 import { FaCog } from 'react-icons/fa';
-import './PasswordForm.css';
+import Modal from 'react-modal';
 import Slider from '../Slider/Slider';
 import Checkbox from '../Checkbox/Checkbox';
+import Settings from '../Settings/Settings';
+import './PasswordForm.css';
+
+Modal.setAppElement('#root');
 
 export default function PasswordForm({ getPassword }) {
 	const chars = Object.keys(charObj);
@@ -14,19 +18,10 @@ export default function PasswordForm({ getPassword }) {
 	const [charCt, setCharCt] = useState(5);
 	const [passParams, setPassParams] = useState([]);
 	const [powered, setPowered] = useState(false);
-	const [paramObj, setParamObj] = useState({
-		lowercase: false,
-		uppercase: false,
-		numbers: false,
-		symbols: false,
-	});
+	const [isOpen, setIsOpen] = useState(false);
 
-	function handleDeleteParam(param) {
-		setParamObj({
-			...paramObj,
-			param: false,
-		});
-		setPassParams([...passParams.filter((p) => p !== param)]);
+	function reset(cb) {
+		cb(false);
 	}
 
 	function handleSubmit(e) {
@@ -39,23 +34,21 @@ export default function PasswordForm({ getPassword }) {
 		setCharCt(e.target.value);
 	}
 
-	function clearForm() {
-		setParamObj({
-			lowercase: false,
-			uppercase: false,
-			numbers: false,
-			symbols: false,
-		});
+	function clearForm(cb) {
 		setCharCt(length.min);
 		setPassParams([]);
+		cb(false);
+	}
+
+	function toggleModal() {
+		setIsOpen(!isOpen);
 	}
 	const opts = chars.map((c) => (
 		<Checkbox
 			name={c}
 			value={charObj[c]}
 			key={c}
-			paramObj={paramObj}
-			handleDeleteParam={handleDeleteParam}
+			reset={reset}
 			clearForm={clearForm}
 			powered={powered}
 			setPowered={setPowered}
@@ -65,7 +58,22 @@ export default function PasswordForm({ getPassword }) {
 	));
 	return (
 		<form className='PasswordForm flex col' onSubmit={handleSubmit}>
-			<FaCog className='abso' size={30} color='#889696' />
+			<FaCog
+				className='abso'
+				size={30}
+				color='#889696'
+				onClick={toggleModal}
+			/>
+			<Modal
+				className='modal flex'
+				isOpen={isOpen}
+				onRequestClose={toggleModal}>
+				<Settings
+					length={length}
+					setLength={setLength}
+					toggleModal={toggleModal}
+				/>
+			</Modal>
 			<h1>
 				Length: <span>{charCt}</span>
 			</h1>
