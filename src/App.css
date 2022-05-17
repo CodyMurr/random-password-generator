@@ -47,3 +47,28 @@ html {
   width: 80%;
   text-align: center;
 }
+
+.App .icons {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  align-items: center;
+  justify-content: center;
+}
+
+.App .icons p {
+  position: absolute;
+  color: #122a3e;
+  font-weight: 700;
+  font-size: 1em;
+}
+
+.copied {
+  transform: scale(2);
+  opacity: 0;
+  transition: all .7s;
+}
+
+.App .copy-ico {
+  cursor: pointer;
+}
