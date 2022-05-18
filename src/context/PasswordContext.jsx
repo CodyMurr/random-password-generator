@@ -1,5 +1,6 @@
 import { createContext, useState } from 'react';
 import { generate } from '../utilities/generator';
+import { copyPW } from '../utilities/helper';
 
 const PasswordContext = createContext();
 
@@ -18,6 +19,11 @@ export function PasswordProvider({ children }) {
 		numbers: false,
 		symbols: false,
 	});
+	const [clipboard, setClipboard] = useState({
+		text: '',
+		result: '',
+	});
+	const [copied, setCopied] = useState(false);
 
 	function clearForm(obj, cb) {
 		const keys = Object.keys(obj);
@@ -30,6 +36,8 @@ export function PasswordProvider({ children }) {
 			});
 			idx++;
 		}
+		setResult(null);
+		setCopied(false);
 	}
 
 	function addParams(param, cb) {
@@ -65,6 +73,16 @@ export function PasswordProvider({ children }) {
 			cb();
 		}, 500);
 	}
+
+	function copy() {
+		if (result) {
+			copyPW(result, setClipboard);
+		} else {
+			return;
+		}
+		setCopied(true);
+	}
+
 	return (
 		<PasswordContext.Provider
 			value={{
@@ -74,6 +92,9 @@ export function PasswordProvider({ children }) {
 				result,
 				formData,
 				isChecked,
+				clipboard,
+				copied,
+				setCopied,
 				setIsChecked,
 				clearForm,
 				addParams,
@@ -82,6 +103,7 @@ export function PasswordProvider({ children }) {
 				getPassword,
 				handleChange,
 				submitForm,
+				copy,
 			}}>
 			{children}
 		</PasswordContext.Provider>
