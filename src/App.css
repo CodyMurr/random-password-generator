@@ -21,7 +21,7 @@ html {
   background-color: #454860;
   border-radius: 1em;
   margin-top: 3%;
-  width: 45%;
+  width: 35%;
   height: 60vh;
   justify-content: center;
   padding: 2%;
@@ -30,7 +30,7 @@ html {
 .App .output {
   position: relative;
   background-color: #777DA7;
-  width: 75%;
+  width: 45%;
   border: 9px solid #777DA7;
   border-radius: 1em;
   margin-top: 3%;
