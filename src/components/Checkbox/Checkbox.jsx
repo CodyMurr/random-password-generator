@@ -1,11 +1,12 @@
 import { capitalize } from '../../utilities/helper';
 import { FaToggleOff, FaToggleOn } from 'react-icons/fa';
 import { useContext } from 'react';
-import CheckboxContext from '../../context/CheckboxContext';
+import PasswordContext from '../../context/PasswordContext';
 import './Checkbox.css';
 
 export default function Checkbox({ name, value }) {
-	const { isChecked, setIsChecked } = useContext(CheckboxContext);
+	const { isChecked, setIsChecked, addParams, deleteParams } =
+		useContext(PasswordContext);
 
 	function toggle() {
 		setIsChecked({
@@ -16,12 +17,12 @@ export default function Checkbox({ name, value }) {
 
 	function handleAddParam(e) {
 		e.preventDefault();
-		toggle();
+		addParams(value, toggle);
 	}
 
 	function handleDeleteParam(e) {
 		e.preventDefault();
-		toggle();
+		deleteParams(value, toggle);
 	}
 
 	return (

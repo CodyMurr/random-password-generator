@@ -1,26 +1,16 @@
-import { useState } from 'react';
+import { useContext } from 'react';
+import PasswordContext from '../../context/PasswordContext';
 import './Settings.css';
 
-export default function Settings({ length, setLength, toggleModal }) {
-	const [formData, setFormData] = useState({
-		min: length.min,
-		max: length.max,
-	});
-	function handleChange(e) {
-		e.preventDefault();
-		setFormData({
-			...formData,
-			[e.target.name]: e.target.value,
-		});
-	}
+export default function Settings({ toggleModal }) {
+	const { formData, handleChange, submitForm } =
+		useContext(PasswordContext);
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		setLength(formData);
-		setTimeout(() => {
-			toggleModal();
-		}, 500);
+		submitForm(toggleModal);
 	}
+
 	return (
 		<form className='Settings flex col' onSubmit={handleSubmit}>
 			<label className='flex col'>

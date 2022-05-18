@@ -1,7 +1,7 @@
 import { charObj } from '../../utilities/generator';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { FaCog } from 'react-icons/fa';
-import { CheckboxProvider } from '../../context/CheckboxContext';
+import PasswordContext from '../../context/PasswordContext';
 import Modal from 'react-modal';
 import Slider from '../Slider/Slider';
 import Checkbox from '../Checkbox/Checkbox';
@@ -11,13 +11,16 @@ import './PasswordForm.css';
 Modal.setAppElement('#root');
 
 export default function PasswordForm({ getPassword }) {
+	const {
+		lengthValues,
+		charCt,
+		passParams,
+		setIsChecked,
+		clearForm,
+	} = useContext(PasswordContext);
+
 	const chars = Object.keys(charObj);
-	const [length, setLength] = useState({
-		min: 5,
-		max: 30,
-	});
-	const [charCt, setCharCt] = useState(5);
-	const [passParams, setPassParams] = useState([]);
+
 	const [isOpen, setIsOpen] = useState(false);
 
 	function handleSubmit(e) {
@@ -25,29 +28,15 @@ export default function PasswordForm({ getPassword }) {
 		getPassword(passParams, charCt);
 	}
 
-	function handleChange(e) {
-		e.preventDefault();
-		setCharCt(e.target.value);
-	}
-
-	function clearForm(cb) {
-		setCharCt(length.min);
-		setPassParams([]);
-		cb(false);
-	}
-
 	function toggleModal() {
 		setIsOpen(!isOpen);
 	}
+
+	function reset() {
+		clearForm(charObj, setIsChecked);
+	}
 	const opts = chars.map((c) => (
-		<CheckboxProvider>
-			<Checkbox
-				name={c}
-				value={charObj[c]}
-				key={c}
-				clearForm={clearForm}
-			/>
-		</CheckboxProvider>
+		<Checkbox name={c} value={charObj[c]} key={c} />
 	));
 	return (
 		<form className='PasswordForm flex col' onSubmit={handleSubmit}>
@@ -61,25 +50,17 @@ export default function PasswordForm({ getPassword }) {
 				className='modal flex'
 				isOpen={isOpen}
 				onRequestClose={toggleModal}>
-				<Settings
-					length={length}
-					setLength={setLength}
-					toggleModal={toggleModal}
-				/>
+				<Settings toggleModal={toggleModal} />
 			</Modal>
 			<h1>
 				Length: <span>{charCt}</span>
 			</h1>
 			<span className='flex minMax'>
-				<h3 className='min'>{length.min}</h3>
-				<Slider
-					length={length}
-					charCt={charCt}
-					handleChange={handleChange}
-				/>
-				<h3 className='max'>{length.max}</h3>
+				<h3 className='min'>{lengthValues.min}</h3>
+				<Slider />
+				<h3 className='max'>{lengthValues.max}</h3>
 			</span>
-			<p className='reset' onClick={clearForm}>
+			<p className='reset' onClick={reset}>
 				RESET
 			</p>
 			{opts}
