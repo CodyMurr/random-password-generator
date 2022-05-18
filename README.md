@@ -36,4 +36,4 @@ Deployment: [Password Generator](secure-generator.netlify.app)
 
 - Update styling
 
-- Additional configuration options in settings
+- Add additional configuration options in settings
