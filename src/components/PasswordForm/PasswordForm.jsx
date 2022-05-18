@@ -1,6 +1,7 @@
 import { charObj } from '../../utilities/generator';
 import { useState } from 'react';
 import { FaCog } from 'react-icons/fa';
+import { CheckboxProvider } from '../../context/CheckboxContext';
 import Modal from 'react-modal';
 import Slider from '../Slider/Slider';
 import Checkbox from '../Checkbox/Checkbox';
@@ -17,12 +18,7 @@ export default function PasswordForm({ getPassword }) {
 	});
 	const [charCt, setCharCt] = useState(5);
 	const [passParams, setPassParams] = useState([]);
-	const [powered, setPowered] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
-
-	function reset(cb) {
-		cb(false);
-	}
 
 	function handleSubmit(e) {
 		e.preventDefault();
@@ -44,17 +40,14 @@ export default function PasswordForm({ getPassword }) {
 		setIsOpen(!isOpen);
 	}
 	const opts = chars.map((c) => (
-		<Checkbox
-			name={c}
-			value={charObj[c]}
-			key={c}
-			reset={reset}
-			clearForm={clearForm}
-			powered={powered}
-			setPowered={setPowered}
-			passParams={passParams}
-			setPassParams={setPassParams}
-		/>
+		<CheckboxProvider>
+			<Checkbox
+				name={c}
+				value={charObj[c]}
+				key={c}
+				clearForm={clearForm}
+			/>
+		</CheckboxProvider>
 	));
 	return (
 		<form className='PasswordForm flex col' onSubmit={handleSubmit}>
@@ -89,7 +82,6 @@ export default function PasswordForm({ getPassword }) {
 			<p className='reset' onClick={clearForm}>
 				RESET
 			</p>
-
 			{opts}
 			<button
 				type='submit'

@@ -1,32 +1,27 @@
 import { capitalize } from '../../utilities/helper';
 import { FaToggleOff, FaToggleOn } from 'react-icons/fa';
-import { useState } from 'react';
+import { useContext } from 'react';
+import CheckboxContext from '../../context/CheckboxContext';
 import './Checkbox.css';
 
-export default function Checkbox({
-	name,
-	value,
-	passParams,
-	setPassParams,
-	clearForm,
-}) {
-	const [isChecked, setIsChecked] = useState(false);
+export default function Checkbox({ name, value }) {
+	const { isChecked, setIsChecked } = useContext(CheckboxContext);
 
 	function toggle() {
-		setIsChecked(!isChecked);
+		setIsChecked({
+			...isChecked,
+			[name]: !isChecked[name],
+		});
 	}
 
 	function handleAddParam(e) {
 		e.preventDefault();
 		toggle();
-		setPassParams([...passParams, value]);
-		console.log(passParams);
 	}
 
 	function handleDeleteParam(e) {
 		e.preventDefault();
 		toggle();
-		setPassParams(passParams.filter((el) => el !== value));
 	}
 
 	return (
@@ -34,7 +29,7 @@ export default function Checkbox({
 			<section className=' flex Checkbox'>
 				<h2>Include {capitalize(name)}</h2>
 				<span>
-					{!isChecked ? (
+					{!isChecked[name] ? (
 						<FaToggleOff
 							size={70}
 							style={{ color: '#7D2636' }}
