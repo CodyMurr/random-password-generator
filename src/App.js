@@ -5,13 +5,29 @@ import PasswordForm from './components/PasswordForm/PasswordForm';
 import PasswordContext from './context/PasswordContext';
 
 export default function App() {
-  const { result, getPassword, clipboard, copied, copy } =
-    useContext(PasswordContext);
+  const {
+    result,
+    getPassword,
+    clipboard,
+    copied,
+    showPassword,
+    shortened,
+    copy,
+    toggleShowPw,
+  } = useContext(PasswordContext);
 
   return (
     <div className='App flex col'>
       <section className='output flex'>
-        <h1>{result ? result : 'Generate Password Below'}</h1>
+        <h1>
+          {result ? (
+            <span onClick={toggleShowPw}>
+              {showPassword ? result : shortened}
+            </span>
+          ) : (
+            'Generate Password Below'
+          )}
+        </h1>
         <section className='flex col icons'>
           {copied ? (
             <>
@@ -27,8 +43,8 @@ export default function App() {
               <FaClipboard
                 className='copy-ico'
                 size={50}
-                color='#C33C54'
-                onClick={copy}
+                color={showPassword ? '#C33C54' : '#777da7a5'}
+                onClick={showPassword ? copy : null}
               />
               <p> </p>
             </>

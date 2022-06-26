@@ -29,17 +29,16 @@ html {
 
 .App .output {
   position: relative;
-  background-color: #777DA7;
-  width: 45%;
-  border: 9px solid #777DA7;
-  border-radius: 1em;
+  background-color: #37718e44;
+  width: 40%;
+  border-radius: 5px;
   margin-top: 3%;
   align-items: center;
   justify-content: center;
 }
 
 .App .output h1 {
-  color: #3A3335;
+  color: #C33C54;
   letter-spacing: 2px;
   font-weight: 800;
   padding: 1%;
@@ -59,7 +58,7 @@ html {
 .App .icons p {
   /* position: absolute; */
   /* color: #3c3d46; */
-  color: #777DA7;
+  color: #777da7;
   font-weight: 700;
   font-size: 1.75em;
 }
