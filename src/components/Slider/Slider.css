@@ -28,7 +28,7 @@
   .container-slide .Slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 80px;
+    width: 70px;
     height: 40px;
     background: #f82821;
     border-radius: 2em;
